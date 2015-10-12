@@ -21,7 +21,10 @@ class VCFParser
       vcf_fptr.each_line do |line|
         if !line.match(VCFRegex::IS_INFO).nil?
           iv = line.match(VCFRegex::INFO_VALS)
-          @info_ary << InfoLine.new(iv[:iv_id],iv[:iv_description],iv[:iv_type],iv[:iv_range])
+          # range may be inside description thus
+          # requires its own match
+          ir = line.match(VCFRegex::INFO_RANGE)
+          @info_ary << InfoLine.new(iv[:iv_id],iv[:iv_description],iv[:iv_type],ir.nil? ? '<Range N/A>' : ir[:ir_range])
         elsif !line.match(VCFRegex::IS_DATA).nil?
           dv = line.match(VCFRegex::DATA_VALS)
           data_line = DataLine.new(dv[:dv_chrom],dv[:dv_pos],dv[:dv_id],dv[:dv_ref],dv[:dv_alt],dv[:dv_qual],dv[:dv_filter],dv[:dv_info],dv[:dv_format],dv[:dv_samples])

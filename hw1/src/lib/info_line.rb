@@ -12,7 +12,7 @@ class InfoLine
   end
 
   def self.header_s
-    @@csv_header.gsub('~',' ')
+    @@csv_header.gsub('~'," \| ")
   end
 
   def to_csv
@@ -20,6 +20,6 @@ class InfoLine
   end
 
   def to_s
-    to_csv.gsub('~',' ')
+    to_csv.gsub('~'," \| ")
   end
 end

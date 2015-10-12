@@ -1,10 +1,10 @@
 Summary for data/PTEN_data.vcf
 ==============================
 
-Polymorphic Region: Chromosome 10:89622915 -> Chromosome 10:89731633
-Polymorphic Region Size: 108718
-Total Number of Polymorphic Sites in Region: 2845
 Polymorphic Site% (Polys/Refs): 2.6169% (2845/108718)
+Total Number of Polymorphic Sites in Region: 2845
+Polymorphic Region: 10:89622915 -> 10:89731633
+Polymorphic Region Size: 108718
 
 100 Most Common Variants:
  Chrom:Pos ID Ref->Alt Variant% Variants/Samples

@@ -12,16 +12,15 @@
       <rect width="600.0" height="360.0" x="0" y="0" fill="url(#BackgroundGradient) #FFFFFF"/>
     </g>
     <g id="title" transform="translate(30.0, 7.2)">
-      <text class="title" x="270.0" y="25.200000000000003" font-size="25.200000000000003" font-family="" fill="#999999" stroke="none" stroke-width="0" text-anchor="middle">Variant Position vs Variant Liklihood</text>
     </g>
     <g id="view" transform="translate(12.0, 93.60000000000001)">
       <g>
         <g id="values" transform="translate(0.0, 4.752000000000001)">
-          <text x="43.2" y="211.46400000000003" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">0</text>
-          <text x="43.2" y="158.598" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">25</text>
-          <text x="43.2" y="105.73200000000001" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">50</text>
-          <text x="43.2" y="52.866000000000014" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">75</text>
-          <text x="43.2" y="0.0" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">100</text>
+          <text x="43.2" y="211.46400000000003" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">0%</text>
+          <text x="43.2" y="158.598" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">25%</text>
+          <text x="43.2" y="105.73200000000001" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">50%</text>
+          <text x="43.2" y="52.866000000000014" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">75%</text>
+          <text x="43.2" y="0.0" font-size="16.917120000000004" font-family="" fill="#999999" text-anchor="end">100%</text>
         </g>
         <g id="grid" transform="translate(54.0, 0.0)">
           <line x1="0" y1="0.0" x2="486.0" y2="0.0" style="stroke: #999999; stroke-width: 1;"/>
@@ -48,8 +47,8 @@
       </g>
     </g>
     <g id="legend" transform="translate(30.0, 46.800000000000004)">
-      <rect x="264.6" y="0" width="10.799999999999999" height="10.799999999999999" fill="#1919B3"/>
-      <text x="284.04" y="11.663999999999998" font-size="15.551999999999998" font-family="" style="color: #999999" fill="#999999"></text>
+      <rect x="97.20000000000002" y="0" width="10.799999999999999" height="10.799999999999999" fill="#1919B3"/>
+      <text x="116.64000000000001" y="11.663999999999998" font-size="15.551999999999998" font-family="" style="color: #999999" fill="#999999">Variant Position vs Alternate %</text>
     </g>
   </g>
 </svg>

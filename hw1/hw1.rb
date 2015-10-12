@@ -24,8 +24,8 @@ else
   outname = infile
 end
 
-info_filename = "#{outname}_info.txt"
-summary_filename = "#{outname}_summary.txt"
+info_filename = "#{outname}_INFO_DICT.txt"
+summary_filename = "#{outname}_SUMMARY_TXT.txt"
 
 vcf_parser = VCFParser.new(infile)
 vcf_parser.parse
@@ -59,10 +59,10 @@ rescue NoMethodError
 end
 poly_count = data_ary.size
 data_ary.sort! {|a,b| b.alt_pct <=> a.alt_pct}
-data_csv_fptr = File.open("#{outname}_summary.csv",'w')
-  data_csv_fptr.puts DataLine.header_c(',')
+data_csv_fptr = File.open("#{outname}_SUMMARY_CSV.csv",'w')
+  data_csv_fptr.puts DataLine.header_c("\t")
   data_ary.each do |line|
-    data_csv_fptr.puts line.to_csv(',')
+    data_csv_fptr.puts line.to_csv("\t")
 end
 data_ary.sort! {|a,b| a.alt_pct <=> b.alt_pct}
 rare_vars = data_ary.first(100)

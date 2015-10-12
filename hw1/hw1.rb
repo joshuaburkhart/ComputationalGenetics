@@ -58,6 +58,12 @@ rescue NoMethodError
   #scruffy gem should be updated
 end
 poly_count = data_ary.size
+data_ary.sort! {|a,b| b.alt_pct <=> a.alt_pct}
+data_csv_fptr = File.open("#{outname}_summary.csv",'w')
+  data_csv_fptr.puts DataLine.header_c(',')
+  data_ary.each do |line|
+    data_csv_fptr.puts line.to_csv(',')
+end
 data_ary.sort! {|a,b| a.alt_pct <=> b.alt_pct}
 rare_vars = data_ary.first(100)
 common_vars = data_ary.last(100)

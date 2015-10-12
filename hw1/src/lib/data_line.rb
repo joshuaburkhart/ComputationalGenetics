@@ -32,7 +32,11 @@ class DataLine
   end
 
   def self.header_s
-    @@csv_header.gsub('~',' ')
+    header_c(' ')
+  end
+
+  def self.header_c(c)
+    @@csv_header.gsub('~',c)
   end
 
   def sample_count
@@ -61,11 +65,11 @@ class DataLine
     @chrom
   end
 
-  def to_csv
-    "#{@chrom}:#{@pos}~#{@id}~#{@ref}->#{@alt}~#{format('%.4f',alt_pct)}%~(#{alt_count}/#{sample_count})"
+  def to_csv(c)
+    "#{@chrom}:#{@pos}#{c}#{@id}#{c}#{@ref}->#{@alt}#{c}#{format('%.4f',alt_pct)}%#{c}(#{alt_count}/#{sample_count})"
   end
 
   def to_s
-    to_csv.gsub('~',' ')
+    to_csv(' ')
   end
 end

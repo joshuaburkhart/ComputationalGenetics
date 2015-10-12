@@ -1,0 +1,52 @@
+Summary for data/PTEN_data.vcf
+==============================
+
+Polymorphic Region: Chromosome 10:89622915 -> Chromosome 10:89731633
+Polymorphic Region Size: 108718
+Total Number of Polymorphic Sites in Region: 2845
+Polymorphic Site% (Polys/Refs): 2.6169% (2845/108718)
+
+Common Variants:
+ Chrom:Pos ID Ref->Alt Variant% Variants/Samples
+ 10:89708364 rs10711306 TA->T 100.0000% (2504/2504)
+ 10:89687071 rs2735361 C->T 100.0000% (2504/2504)
+ 10:89623901 rs2943772 G->C 100.0000% (2504/2504)
+ 10:89623860 rs71022512 CT->C 100.0000% (2504/2504)
+ 10:89699047 rs373438433 TTTTG->T 99.6805% (2496/2504)
+ 10:89712473 rs2673832 G->A 99.5208% (2492/2504)
+ 10:89721094 rs2736627 C->T 99.4409% (2490/2504)
+ 10:89639962 rs2673836 G->A 98.2029% (2459/2504)
+ 10:89708694 rs11294924 CA->C 95.3275% (2387/2504)
+ 10:89662504 rs2735357 A->G 94.8482% (2375/2504)
+
+Rare Variants:
+ Chrom:Pos ID Ref->Alt Variant% Variants/Samples
+ 10:89622936 rs542360599 C->A 0.0399% (1/2504)
+ 10:89623140 rs530598021 C->A 0.0399% (1/2504)
+ 10:89623280 rs567739104 C->T 0.0399% (1/2504)
+ 10:89623314 rs535142665 T->C 0.0399% (1/2504)
+ 10:89623317 rs550385924 T->C 0.0399% (1/2504)
+ 10:89623362 rs537241946 C->T 0.0399% (1/2504)
+ 10:89623589 rs574873281 C->T 0.0399% (1/2504)
+ 10:89623649 rs563629336 C->T 0.0399% (1/2504)
+ 10:89623713 rs528340982 C->G 0.0399% (1/2504)
+ 10:89623808 rs528834090 C->T 0.0399% (1/2504)
+
+VCF Metadata:
+Non-variants: 11 variants matching reference genotype
+ Chrom:Pos ID Ref->Alt Variant% Variants/Samples
+ Non-variant 1, 10:89626162 rs375067011 T->G 0.0000% (0/2504)
+ Non-variant 2, 10:89627435 rs563956860 G->T 0.0000% (0/2504)
+ Non-variant 3, 10:89627564 rs554275432 A->C 0.0000% (0/2504)
+ Non-variant 4, 10:89635140 rs139248713 T->C 0.0000% (0/2504)
+ Non-variant 5, 10:89653574 rs552381593 C->T 0.0000% (0/2504)
+ Non-variant 6, 10:89663510 rs539168365 A->G 0.0000% (0/2504)
+ Non-variant 7, 10:89664054 rs559411850 A->G 0.0000% (0/2504)
+ Non-variant 8, 10:89670567 rs543306163 T->C 0.0000% (0/2504)
+ Non-variant 9, 10:89670831 rs570401167 T->C 0.0000% (0/2504)
+ Non-variant 10, 10:89692495 rs570912831 C->T 0.0000% (0/2504)
+ Non-variant 11, 10:89721008 rs566484601 T->C 0.0000% (0/2504)
+fileDate: 20150218
+fileformat: VCFv4.1
+reference: ftp://ftp.1000genomes.ebi.ac.uk//vol1/ftp/technical/reference/phase2_reference_assembly_sequence/hs37d5.fa.gz
+source: 1000GenomesPhase3Pipeline

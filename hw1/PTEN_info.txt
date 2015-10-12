@@ -1,0 +1,29 @@
+ID	Definition Type Range
+
+CIEND:	Confidence interval around END for imprecise variants Integer 
+CIPOS:	Confidence interval around POS for imprecise variants Integer 
+CS:	Source call set. String 
+END:	End coordinate of this variant Integer 
+IMPRECISE:	Imprecise structural variation Flag 
+MC:	Merged calls. String 
+MEINFO:	Mobile element info of the form NAME String 
+MEND:	Mitochondrial end coordinate of inserted sequence Integer 
+MLEN:	Estimated length of mitochondrial insert Integer 
+MSTART:	Mitochondrial start coordinate of inserted sequence Integer 
+SVLEN:	SV length. It is only calculated for structural variation MEIs. For other types of SVs; one may calculate the SV length by INFO:END-START+1 Integer 
+SVTYPE:	Type of structural variant String 
+TSD:	Precise Target Site Duplication for bases String 
+AC:	Total number of alternate alleles in called genotypes Integer 
+AF:	Estimated allele frequency in the range (0 Float 
+NS:	Number of samples with data Integer 
+AN:	Total number of alleles in called genotypes Integer 
+EAS_AF:	Allele frequency in the EAS populations calculated from AC and AN Float 0,1
+EUR_AF:	Allele frequency in the EUR populations calculated from AC and AN Float 0,1
+AFR_AF:	Allele frequency in the AFR populations calculated from AC and AN Float 0,1
+AMR_AF:	Allele frequency in the AMR populations calculated from AC and AN Float 0,1
+SAS_AF:	Allele frequency in the SAS populations calculated from AC and AN Float 0,1
+DP:	Total read depth; only low coverage data were counted towards the DP Integer 
+AA:	Ancestral Allele. Format: AA|REF|ALT|IndelType. AA: Ancestral allele String 
+VT:	indicates what type of variant the line represents String 
+EX_TARGET:	indicates whether a variant is within the exon pull down target boundaries Flag 
+MULTI_ALLELIC:	indicates whether a site is multi-allelic Flag 

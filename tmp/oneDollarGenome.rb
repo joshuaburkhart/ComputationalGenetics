@@ -1,7 +1,8 @@
 # usage: $ ruby | jruby oneDollarGenome.rb <x> <n>
 # x = number of unique reads seen
 # n = number of reads needed to cover genome
-# returns average number of unique reads seen (assuming uniform distribution)
+# returns average number of unique reads seen (assuming uniform dist.)
+#   see: http://www.nature.com/articles/srep04532 for dist. details
 
 # example: $ jruby oneDollarGenome.rb 760 100
 

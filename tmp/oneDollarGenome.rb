@@ -29,9 +29,9 @@ def f_iter(x)
     return cur_prob
 end
 
-r_ret = f($x)
+r_ret = 1#f($x)
 i_ret = f_iter($x)
-puts "Avg. Coverage = #{100 * ($x/$n).round() / 100.0}"
+puts "Avg. Coverage = #{(100 * ($x/$n)).round() / 100.0}"
 puts "R: #{(100 * r_ret).round() / 100.0} \
 (#{(10000 * (r_ret/$n)).round() / 100.0}%)"
 puts "I: #{(100 * i_ret).round() / 100.0} \

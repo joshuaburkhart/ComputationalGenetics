@@ -2,4 +2,5 @@
 .idea/*.xml
 .idea/*.iml
 *.svg
+*.DS_Store*
 

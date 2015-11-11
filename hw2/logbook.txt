@@ -1,0 +1,18 @@
+Download extra .map and .ped files
+==================================
+http://morgan.dartmouth.edu/Docs/eigenstrat-2.0/CONVERTF/
+http://chianti.ucsd.edu/BENG183-2012/files/Homework/
+
+PLINK: Basic Association
+========================
+http://pngu.mgh.harvard.edu/~purcell/plink/gplink_tutorial/p22.html
+
+Haploview
+=========
+http://atgu.mgh.harvard.edu/plinkseq/gwas.shtml
+File->Open new data->Navigate to Bottom "PLINK Format"
+wait for a few seconds
+Plot->X-Axis=Chromosomes, Y-Axis=OR->OK
+
+NOTE: if you select SVG, may have to download a viewer
+http://gapplin.wolfrosch.com/

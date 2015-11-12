@@ -14,5 +14,5 @@ File->Open new data->Navigate to Bottom "PLINK Format"
 wait for a few seconds
 Plot->X-Axis=Chromosomes, Y-Axis=OR->OK
 
-NOTE: if you select SVG, may have to download a viewer
+NOTE: If SVG box is checked, be sure to download an appropriate viewer
 http://gapplin.wolfrosch.com/

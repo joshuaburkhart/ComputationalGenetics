@@ -1,0 +1,134 @@
+---
+title: 'Final Project: Exercise'
+author: "Joshua Burkhart"
+date: "December 14, 2015"
+output: pdf_document
+---
+
+# Final Project: Exercise
+
+## Loading the demo data
+
+```{r, echo=FALSE}
+library(DOQTL)
+setwd("/Users/joshuaburkhart/SoftwareProjects/ComputationalGenetics/FinalProject")
+load("DOQTL_demo.Rdata")
+ls()
+head(pheno)
+```
+
+## QTL Mapping
+
+```{r}
+K = kinship.probs(founder.probs)
+addcovar = matrix(pheno$Study)
+rownames(addcovar) = rownames(pheno)
+colnames(addcovar) = "Study"
+setwd("/Users/joshuaburkhart/SoftwareProjects/ComputationalGenetics/FinalProject")
+load("muga_snps.Rdata")
+```
+
+Q1. How does the biological question translate to a statistical hypothesis? Include the biological question, hypothesis and any assumptions in the write-up. 
+
+> The biological question asks: 'Variations in what region(s) of the genome is/are 
+  correlated with phenotype as measured by the number of micro-nucleated reticulocytes
+  following benzene treatment?'
+  
+> The null hypothesis is that all regions in the genome vary independently from the
+  variation seen in the phenotype.
+  
+> The alternate hypothesis is that some of the variation in some of the regions in 
+  the genome are correlated with the phenotype.
+
+```{r}
+qtl = scanone(pheno = pheno, pheno.col = "prop.bm.MN.RET", probs = founder.probs, 
+              K = K, addcovar = addcovar, snps = muga_snps)
+qtl.plot(qtl, main = "prop.bm.MN.RET")
+```
+
+Q2: Do you see evidence of a peak? If so, where? Save the plot for any results.  Provide the figure and an appropriate figure-legend in your write-up. 
+
+> A peak with a LOD score > 12 is present on chromosome 10.
+
+```{r}
+perms = scanone.perm(pheno = pheno, pheno.col = "prop.bm.MN.RET", probs = founder.probs, 
+    K = K, addcovar = addcovar, snps = muga_snps, nperm = 100)
+thr = quantile(perms, c(0.95, 0.9, 0.37))
+qtl.plot(qtl, sig.thr = thr, sig.col = c("red", "orange", "goldenrod"), main = "prop.bm.MN.RET")
+```
+
+Q3.  Review and save the QTL plot with thresholds. Provide your assessment regarding statistical significance. Provide the figure and an appropriate figure-legend in your write-up. 
+
+> The peak appears highly statistically significant and       
+  shows typical QTL-characteristic jags on ramp supporting
+  a biological underpinning for this result.
+  
+
+```{r}
+coef.plot(qtl, chr = 10, main = "prop.bm.MN.RET")
+```
+
+Q4. Do you see any strain effects? For example, do you see that any DO mice containing a particular strain allele have ou  lower or higher levels of micro-nucleated reticulocytes? What does this mean? Provide the figure and an appropriate figure-legend in your write-up. 
+
+> The CAST/EiJ strain allele appears to have much lower levels 
+  (<-.02) of micro-nucleation than the others. This may
+  indicate our QTL applies to genotypes with CAST/EiJ only and
+  not the others.
+
+```{r}
+interval = bayesint(qtl$lod$A, chr = 10)
+interval
+```
+
+Q5. Provide the interval results in your write-up.  How large is the support interval? Where is the proximal and distal end of the peak? What is the maximum LOD score and its location? 
+
+```{r}
+support_interval_Mb = 35.66659 - 28.84078
+support_interval_cM = 11.78353 - 11.37498
+support_interval_Mb
+support_interval_cM
+
+lo_pos = 28.84078
+hi_pos = 35.66660
+peak_locus - lo_pos
+hi_pos - peak_locus
+```
+
+> The support interval is 6.82581 Mb (0.40855 cM). The peak is centered at 32.24779 Mb with a maximum lod score of 13.02986. 28.84078 Mb is the proximal end of the peak and 35.66660 Mb is the distal end.
+
+```{r}
+effect.plot(pheno = pheno, col = "prop.bm.MN.RET", founder.probs = founder.probs, 
+    snp.id = interval[2, 1], snps = muga_snps)
+```
+
+Q6. Save the plot and include it and the appropriate figure legend in your write-up. This plot shows the phenotype value on the Y-axis plotted against the 36 DO genotypes on the X-axis. Do all genotypes occur in this set of 143 samples? Do you see any patterns or trends? 
+
+> There are 8^2 = 64 possible genotypes. Perhaps some genotypes are more
+  difficult to achieve (e.g. sterile/degenerate/fatal) than others. A
+  stepwise pattern appears to model the data roughly. The first five
+  genotypes show no phenotype value, the next eight show low phenotypic
+  values, the next nine show higher phenotypic values, etc.
+
+## Searching for Candidate Genes
+
+```{r}
+cand.snps = variant.plot(var.file = "cc.snps.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", 
+    chr = XX, start = interval[1, 3], end = interval[3, 3], pattern = "YY", 
+    qtl = qtl$lod$A[, c(2, 3, 7)])
+```
+
+Q7. How many genes (or non-coding RNAs) are in the interval? Do you see any evidence of private alleles?  In some cases, this plot will narrow the support interval significantly. Include this plot and the appropriate figure legend in your write-up. 
+
+```{r}
+cand.snps = variant.plot(var.file = "cc.indels.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", chr = XX, start = interval[1, 3], end = interval[3, 3], type = "indel", pattern = "YY", qtl = qtl$lod$A[, c(2, 3, 7)])
+```
+
+Q8. Can you narrow the candidate gene list from this based on the indels?  Why or why not? Include this plot and the appropriate figure legend in your write-up. 
+
+```{r}
+cand.snps = variant.plot(var.file = "cc.sv.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", 
+    chr = XX, start = interval[1, 3], end = interval[3, 3], type = "sv", pattern = "YY", 
+    qtl = qtl$lod$A[, c(2, 3, 7)])
+```
+
+Q9: What other strategies could you use to narrow this region? Hint: think public data types and other types of data and studies. Provide the next steps that should be taken and any limitations of this study in your write-up. 

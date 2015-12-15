@@ -1,0 +1,48 @@
+SNPmanipulation-package
+                        Accessing, subsetting and plotting mouse SNPs.
+argmax.geno             Find the most probable genotype for all samples
+                        using the Viterbi algorithm.
+batch.normalize         Batch normalize the X & Y intensity data.
+bayesint                Find a Bayesian Credible Interval around a QTL.
+calc.genoprob           Calculate the 8 founder genotype probabilities
+                        at each SNP.
+call.genotypes          Call the most probably genotype by finding the
+                        Viterbi path through the genotype states for
+                        each sample.
+categorize.variants     categorize.variants
+cluster.strains         cluster.strains
+convert.variants.to.GRanges
+                        convert.variants.to.GRanges
+convert.variants.to.numeric
+                        convert.variants.to.numeric
+example.genes           example.genes
+example.snps            example.snps
+extract.raw.data        Extract intensities, genotypes and call rates
+                        from from raw MUGA data files
+filter.geno.probs       Remove SNPs where the genotype probabilities
+                        are too low for one founder state
+filter.samples          Filter X, Y and genotype data by call rate
+find.overlapping.genes
+                        find.overlapping.genes
+founder.cols            founder.cols
+gene.plot               gene.plot
+get.mgi.features        get.mgi.features
+get.pattern.variants    get.pattern.variants
+get.strains             get.strains
+get.variants            get.variants
+kinship                 Create a kinship matrix based on allele
+                        sharing.
+plot.haplotype.blocks   Given a genomic region, plot the haplotype
+                        blocks for a subset of strains.
+predict.sex             Determine the sex of each sample
+qtl                     qtl
+qtl.heatmap             Plot a Heatmap of all QTL
+qtl.qtlrel              Use QTLRel to map a set of traits
+read.cross              Read in the data to genotype a DO cross.
+sex.founders            Data.frame with founder IDs and sex value.
+snp.plot                snp.plot
+states                  states
+summarize.genotype.data
+                        Summarize the genotype data output by the
+                        genotyping HMM.
+variant.plot            variant.plot

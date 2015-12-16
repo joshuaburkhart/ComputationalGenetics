@@ -2,14 +2,27 @@
 title: 'Final Project: Exercise'
 author: "Joshua Burkhart"
 date: "December 14, 2015"
-output: pdf_document
+output: 
+  pdf_document: 
+    latex_engine: xelatex
 ---
+
+```{r global_options, echo=FALSE, include=FALSE, error=FALSE}
+knitr::opts_chunk$set(fig.path = "Figs/",
+                      message = FALSE,
+                      warning = FALSE,
+                      include = TRUE,
+                      echo = TRUE,
+                      error = TRUE,
+                      fig.width = 11,
+                      comment = NA)
+```
 
 # Final Project: Exercise
 
 ## Loading the demo data
 
-```{r, echo=FALSE}
+```{r}
 library(DOQTL)
 setwd("/Users/joshuaburkhart/SoftwareProjects/ComputationalGenetics/FinalProject")
 load("DOQTL_demo.Rdata")
@@ -19,7 +32,7 @@ head(pheno)
 
 ## QTL Mapping
 
-```{r}
+```{r, results="hide"}
 K = kinship.probs(founder.probs)
 addcovar = matrix(pheno$Study)
 rownames(addcovar) = rownames(pheno)
@@ -50,7 +63,7 @@ Q2: Do you see evidence of a peak? If so, where? Save the plot for any results. 
 
 > A peak with a LOD score > 12 is present on chromosome 10.
 
-```{r}
+```{r, results="hide"}
 perms = scanone.perm(pheno = pheno, pheno.col = "prop.bm.MN.RET", probs = founder.probs, 
     K = K, addcovar = addcovar, snps = muga_snps, nperm = 100)
 thr = quantile(perms, c(0.95, 0.9, 0.37))
@@ -87,11 +100,6 @@ support_interval_Mb = 35.66659 - 28.84078
 support_interval_cM = 11.78353 - 11.37498
 support_interval_Mb
 support_interval_cM
-
-lo_pos = 28.84078
-hi_pos = 35.66660
-peak_locus - lo_pos
-hi_pos - peak_locus
 ```
 
 > The support interval is 6.82581 Mb (0.40855 cM). The peak is centered at 32.24779 Mb with a maximum lod score of 13.02986. 28.84078 Mb is the proximal end of the peak and 35.66660 Mb is the distal end.
@@ -103,8 +111,7 @@ effect.plot(pheno = pheno, col = "prop.bm.MN.RET", founder.probs = founder.probs
 
 Q6. Save the plot and include it and the appropriate figure legend in your write-up. This plot shows the phenotype value on the Y-axis plotted against the 36 DO genotypes on the X-axis. Do all genotypes occur in this set of 143 samples? Do you see any patterns or trends? 
 
-> There are 8^2 = 64 possible genotypes. Perhaps some genotypes are more
-  difficult to achieve (e.g. sterile/degenerate/fatal) than others. A
+> All 36 (8 choose 2 + 8) genotypes are plotted though some don't show values. Perhaps these genotypes are more difficult to cheive (e.g. sterile/degenerate/fatal/etc.). A
   stepwise pattern appears to model the data roughly. The first five
   genotypes show no phenotype value, the next eight show low phenotypic
   values, the next nine show higher phenotypic values, etc.
@@ -112,23 +119,50 @@ Q6. Save the plot and include it and the appropriate figure legend in your write
 ## Searching for Candidate Genes
 
 ```{r}
+setwd("/Users/joshuaburkhart/SoftwareProjects/ComputationalGenetics/FinalProject")
 cand.snps = variant.plot(var.file = "cc.snps.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", 
-    chr = XX, start = interval[1, 3], end = interval[3, 3], pattern = "YY", 
+    chr = 10, start = interval[1, 3], end = interval[3, 3], pattern = "CAST/EiJ", 
     qtl = qtl$lod$A[, c(2, 3, 7)])
 ```
+In this plot, the Sanger SNPs are plotted in the top panel with the reference allele in gray and the alternate allele in white. The SNPs that match the requested pattern are plotted as short orange bars beneath this. The LOD score is plotted as a heat map below this with black scores low and red scores high. Finally, the bottom panel shows the genes in the interval, with those containing SNPs that match the pattern plotted in orange.
 
 Q7. How many genes (or non-coding RNAs) are in the interval? Do you see any evidence of private alleles?  In some cases, this plot will narrow the support interval significantly. Include this plot and the appropriate figure legend in your write-up. 
 
+> 60 genes are reported in the region, 53 reported to fit the pattern.
+
+> The peak appears to center over 4 genes:
+2900052O17Rik,
+C0300006N10Rik,
+A230081H15Rik,and
+Nkain2. The latter two contain SNPs that match our supplied pattern (CAST/EiJ). It's possible a strain-specific allele of
+one of these genes is present.
+
 ```{r}
-cand.snps = variant.plot(var.file = "cc.indels.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", chr = XX, start = interval[1, 3], end = interval[3, 3], type = "indel", pattern = "YY", qtl = qtl$lod$A[, c(2, 3, 7)])
+cand.snps = variant.plot(var.file = "cc.indels.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", chr = 10, start = interval[1, 3], end = interval[3, 3], type = "indel", pattern = "CAST/EiJ", qtl = qtl$lod$A[, c(2, 3, 7)])
 ```
 
 Q8. Can you narrow the candidate gene list from this based on the indels?  Why or why not? Include this plot and the appropriate figure legend in your write-up. 
 
+> This plot provides similar information to the SNPs
+  plot above, indicating the peak is centered over
+  2900052O17Rik,
+  C0300006N10Rik,
+  A230081H15Rik,and
+  Nkain2. Though perhaps validating our previous
+  SNP assessment, it doesn't indicate we can further
+  narrow our candidate list.
+
 ```{r}
 cand.snps = variant.plot(var.file = "cc.sv.NCBI38.txt.gz", mgi.file = "MGI.20130703.sorted.txt.gz", 
-    chr = XX, start = interval[1, 3], end = interval[3, 3], type = "sv", pattern = "YY", 
+    chr = 10, start = interval[1, 3], end = interval[3, 3], type = "sv", pattern = "CAST/EiJ", 
     qtl = qtl$lod$A[, c(2, 3, 7)])
 ```
 
-Q9: What other strategies could you use to narrow this region? Hint: think public data types and other types of data and studies. Provide the next steps that should be taken and any limitations of this study in your write-up. 
+Q9: What other strategies could you use to narrow this region? Hint: think public data types and other types of data and studies. Provide the next steps that should be taken and any limitations of this study in your write-up.
+
+> Literature Review
+  Previous RNA-Seq experiments?
+  Previous CNV experiments?
+  Putative Protein Product simulation
+  New RNA-Seq experiment
+  Knockout/Rescue experiments
